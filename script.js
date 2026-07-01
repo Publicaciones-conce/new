@@ -156,7 +156,7 @@ function initWhatsAppShare() {
         const url = window.location.href;
         const message = encodeURIComponent(
             '¡Hola! Te invito a nuestra boda 💜\n\n' +
-            'Camilla & Mauro\n' +
+            'Camila & Mauro\n' +
             '15 de enero de 2027 · Alto Verde, Tucumán\n\n' +
             'Confirma tu asistencia y entérate de todos los detalles aquí:\n' +
             url
