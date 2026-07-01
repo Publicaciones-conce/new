@@ -151,43 +151,64 @@
     <!-- 5. RSVP                 -->
     <!-- ======================== -->
     <section id="rsvp" class="section">
-        <div class="container">
-            <h2 class="section-title">¿Nos acompañas?</h2>
-            <p class="rsvp-subtitle">Confirma tu asistencia antes del 1 de enero de 2027</p>
-            <form id="rsvp-form">
-                <div class="form-group">
-                    <label for="name">Nombre completo</label>
-                    <input type="text" id="name" placeholder="Ej: Camilla Pérez" required />
-                </div>
-                <div class="form-group">
-                    <label>¿Asistirás?</label>
-                    <div class="radio-group">
-                        <label><input type="radio" name="attendance" value="si" required /> Sí, voy a ir</label>
-                        <label><input type="radio" name="attendance" value="no" /> No, no podré ir</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="guests">Cantidad de invitados</label>
-                    <select id="guests">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="diet">Restricciones alimenticias</label>
-                    <textarea id="diet" placeholder="Ej: Celíaco, vegetariano, alergias..."></textarea>
-                </div>
-                <button type="submit" class="btn-gold btn-large">Confirmar asistencia</button>
-            </form>
-            <div id="rsvp-success" class="hidden">
-                <i class="fas fa-check-circle"></i>
-                <h3>¡Gracias por confirmar!</h3>
-                <p>Te esperamos el 15 de enero 💜</p>
+    <div class="container">
+        <h2 class="section-title">¿Nos acompañas?</h2>
+        <p class="rsvp-subtitle">Confirma tu asistencia antes del 1 de enero de 2027</p>
+        
+        <!-- 🔽 ÚNICAS MODIFICACIONES: action, method y name en los inputs -->
+        <form id="rsvp-form" 
+              action="https://formsubmit.co/lautarososa808@gmail.com" 
+              method="POST">
+            
+            <!-- Campos ocultos para personalizar el correo (opcionales pero recomendados) -->
+            <input type="hidden" name="_subject" value="Nueva confirmación de boda 💍" />
+            <input type="hidden" name="_captcha" value="true" />
+            <input type="hidden" name="_template" value="table" />
+            <!-- Si no tienes página de gracias, elimina la línea siguiente -->
+            <input type="hidden" name="_next" value="https://tusitio.com/gracias.html" />
+
+            <div class="form-group">
+                <label for="name">Nombre completo</label>
+                <!-- AÑADIDO: name="nombre" -->
+                <input type="text" id="name" name="nombre" placeholder="Ej: Camilla Pérez" required />
             </div>
+
+            <div class="form-group">
+                <label>¿Asistirás?</label>
+                <div class="radio-group">
+                    <!-- AÑADIDO: name="asistencia" y value con texto descriptivo -->
+                    <label><input type="radio" name="asistencia" value="Sí, voy a ir" required /> Sí, voy a ir</label>
+                    <label><input type="radio" name="asistencia" value="No, no podré ir" /> No, no podré ir</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="guests">Cantidad de invitados</label>
+                <!-- AÑADIDO: name="invitados" -->
+                <select id="guests" name="invitados">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="diet">Restricciones alimenticias</label>
+                <!-- AÑADIDO: name="dieta" -->
+                <textarea id="diet" name="dieta" placeholder="Ej: Celíaco, vegetariano, alergias..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-gold btn-large">Confirmar asistencia</button>
+        </form>
+
+        <div id="rsvp-success" class="hidden">
+            <i class="fas fa-check-circle"></i>
+            <h3>¡Gracias por confirmar!</h3>
+            <p>Te esperamos el 15 de enero 💜</p>
         </div>
-    </section>
+    </div>
+</section>
 
  
 
