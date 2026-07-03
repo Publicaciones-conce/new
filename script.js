@@ -123,28 +123,42 @@ function initPetals() {
     // 4. RSVP - FORMULARIO
     // =========================================
     function initRSVP() {
-        const form = document.getElementById('rsvp-form');
-        const successDiv = document.getElementById('rsvp-success');
+    const form = document.getElementById('rsvp-form');
+    const successDiv = document.getElementById('rsvp-success');
 
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-            const name = document.getElementById('name').value.trim();
-            const attendance = document.querySelector('input[name="attendance"]:checked');
+        const formData = new FormData(form);
+        const data = {
+            nombre: formData.get('nombre'),
+            asistencia: formData.get('asistencia'),
+            invitados: formData.get('invitados'),
+            dieta: formData.get('dieta')
+        };
 
-            if (!name) {
-                alert('Por favor, ingresa tu nombre.');
-                return;
+        fetch(form.action, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
             }
-            if (!attendance) {
-                alert('Por favor, indica si vas a asistir.');
-                return;
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.result === 'success') {
+                form.classList.add('hidden');
+                successDiv.classList.remove('hidden');
+                form.reset();
+            } else {
+                alert('Hubo un problema al enviar tu confirmación. Por favor, intenta de nuevo.');
             }
-
-            form.classList.add('hidden');
-            successDiv.classList.remove('hidden');
+        })
+        .catch(error => {
+            alert('Error de conexión. Por favor, verifica tu internet e intenta de nuevo.');
         });
-    }
+    });
+}
     // =========================================
 // COMPARTIR POR WHATSAPP
 // =========================================
