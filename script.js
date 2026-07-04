@@ -141,7 +141,7 @@ function initPetals() {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'text/plain'
             }
         })
         .then(response => response.json())
